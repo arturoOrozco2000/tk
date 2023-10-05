@@ -18,6 +18,9 @@ const aportacion_service_1 = require("./aportacion.service");
 const create_aportacion_dto_1 = require("./dto/create-aportacion.dto");
 const update_aportacion_dto_1 = require("./dto/update-aportacion.dto");
 const search_aportacion_dto_1 = require("./dto/search-aportacion.dto");
+const decorators_1 = require("../auth/decorators");
+const interfaces_1 = require("../auth/interfaces");
+const swagger_1 = require("@nestjs/swagger");
 let AportacionController = class AportacionController {
     constructor(aportacionService) {
         this.aportacionService = aportacionService;
@@ -76,7 +79,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AportacionController.prototype, "remove", null);
 exports.AportacionController = AportacionController = __decorate([
+    (0, swagger_1.ApiTags)('Aportaciones'),
     (0, common_1.Controller)('aportacion'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [aportacion_service_1.AportacionService])
 ], AportacionController);
 //# sourceMappingURL=aportacion.controller.js.map

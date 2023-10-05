@@ -18,6 +18,9 @@ const retiros_service_1 = require("./retiros.service");
 const create_retiro_dto_1 = require("./dto/create-retiro.dto");
 const update_retiro_dto_1 = require("./dto/update-retiro.dto");
 const search_retiro_dto_1 = require("./dto/search-retiro.dto");
+const decorators_1 = require("../auth/decorators");
+const interfaces_1 = require("../auth/interfaces");
+const swagger_1 = require("@nestjs/swagger");
 let RetirosController = class RetirosController {
     constructor(retirosService) {
         this.retirosService = retirosService;
@@ -76,7 +79,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RetirosController.prototype, "remove", null);
 exports.RetirosController = RetirosController = __decorate([
+    (0, swagger_1.ApiTags)('Retiros'),
     (0, common_1.Controller)('retiros'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [retiros_service_1.RetirosService])
 ], RetirosController);
 //# sourceMappingURL=retiros.controller.js.map

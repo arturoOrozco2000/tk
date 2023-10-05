@@ -3,8 +3,13 @@ import { NivelService } from './nivel.service';
 import { CreateNivelDto } from './dto/create-nivel.dto';
 import { UpdateNivelDto } from './dto/update-nivel.dto';
 import { SearchNivel } from './dto/search-nivel.dto';
+import { Auth } from 'src/auth/decorators';
+import { ValidRoles } from 'src/auth/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Nivel')
 @Controller('nivel')
+@Auth( ValidRoles.admin, ValidRoles.superUser, ValidRoles.user)
 export class NivelController {
   constructor(private readonly nivelService: NivelService) {}
 

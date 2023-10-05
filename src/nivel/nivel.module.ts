@@ -4,11 +4,13 @@ import { NivelController } from './nivel.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Nivel, NivelSchema } from './entities/nivel.entity';
 import { GeneralModule } from 'src/general/general.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [NivelController],
   providers: [NivelService],
   imports: [
+    AuthModule,
     MongooseModule.forFeature([
       {
         name: Nivel.name,

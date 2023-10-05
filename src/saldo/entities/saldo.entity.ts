@@ -1,8 +1,10 @@
 import { Prop, Schema , SchemaFactory } from '@nestjs/mongoose';
 import { Document} from 'mongoose';
+import { ManyToOne } from 'typeorm';
+import { Usuario } from '../../auth/entities/usuario.entity';
 
 @Schema()
-export class Saldo extends Document{
+export class Saldo extends Document {
   @Prop({index: true, required: true})
   idUsuario: string;
 

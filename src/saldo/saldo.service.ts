@@ -65,8 +65,10 @@ export class SaldoService {
     }
   }
 
-  update(id: number, updateSaldoDto: UpdateSaldoDto) {
-    return `This action updates a #${id} saldo`;
+  async update(term: string, updateSaldoDto: UpdateSaldoDto) {
+    const saldo = await this.findOne(term);
+    await saldo.updateOne( updateSaldoDto );
+    return { ...saldo.toJSON, ...updateSaldoDto }
   }
 
   remove(id: number) {

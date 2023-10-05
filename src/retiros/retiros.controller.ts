@@ -3,8 +3,13 @@ import { RetirosService } from './retiros.service';
 import { CreateRetiroDto } from './dto/create-retiro.dto';
 import { UpdateRetiroDto } from './dto/update-retiro.dto';
 import { SearchRetiro } from './dto/search-retiro.dto';
+import { Auth } from 'src/auth/decorators';
+import { ValidRoles } from 'src/auth/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Retiros')
 @Controller('retiros')
+@Auth( ValidRoles.admin, ValidRoles.superUser, ValidRoles.user)
 export class RetirosController {
   constructor(private readonly retirosService: RetirosService) {}
 

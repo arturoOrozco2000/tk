@@ -18,6 +18,10 @@ const saldo_service_1 = require("./saldo.service");
 const create_saldo_dto_1 = require("./dto/create-saldo.dto");
 const update_saldo_dto_1 = require("./dto/update-saldo.dto");
 const search_saldo_dto_1 = require("./dto/search-saldo.dto");
+const interfaces_1 = require("../auth/interfaces");
+const decorators_1 = require("../auth/decorators");
+const usuario_entity_1 = require("../auth/entities/usuario.entity");
+const swagger_1 = require("@nestjs/swagger");
 let SaldoController = class SaldoController {
     constructor(saldoService) {
         this.saldoService = saldoService;
@@ -31,8 +35,8 @@ let SaldoController = class SaldoController {
     findOne(term) {
         return this.saldoService.findOne(term);
     }
-    update(id, updateSaldoDto) {
-        return this.saldoService.update(+id, updateSaldoDto);
+    update(id, updateSaldoDto, usuario) {
+        return this.saldoService.update(id, updateSaldoDto);
     }
     remove(id) {
         return this.saldoService.remove(+id);
@@ -64,8 +68,10 @@ __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, decorators_1.GetUsuario)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_saldo_dto_1.UpdateSaldoDto]),
+    __metadata("design:paramtypes", [String, update_saldo_dto_1.UpdateSaldoDto,
+        usuario_entity_1.Usuario]),
     __metadata("design:returntype", void 0)
 ], SaldoController.prototype, "update", null);
 __decorate([
@@ -76,7 +82,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SaldoController.prototype, "remove", null);
 exports.SaldoController = SaldoController = __decorate([
+    (0, swagger_1.ApiTags)('Saldo'),
     (0, common_1.Controller)('saldo'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [saldo_service_1.SaldoService])
 ], SaldoController);
 //# sourceMappingURL=saldo.controller.js.map

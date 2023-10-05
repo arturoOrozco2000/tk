@@ -3,8 +3,13 @@ import { DomicilioService } from './domicilio.service';
 import { CreateDomicilioDto } from './dto/create-domicilio.dto';
 import { UpdateDomicilioDto } from './dto/update-domicilio.dto';
 import { SearchDomicilio } from './dto/search-domicilio.dto';
+import { ValidRoles } from 'src/auth/interfaces';
+import { Auth } from 'src/auth/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Domicilio')
 @Controller('domicilio')
+@Auth( ValidRoles.admin, ValidRoles.superUser, ValidRoles.user)
 export class DomicilioController {
   constructor(private readonly domicilioService: DomicilioService) {}
 

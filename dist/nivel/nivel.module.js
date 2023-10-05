@@ -13,6 +13,7 @@ const nivel_controller_1 = require("./nivel.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const nivel_entity_1 = require("./entities/nivel.entity");
 const general_module_1 = require("../general/general.module");
+const auth_module_1 = require("../auth/auth.module");
 let NivelModule = class NivelModule {
 };
 exports.NivelModule = NivelModule;
@@ -21,6 +22,7 @@ exports.NivelModule = NivelModule = __decorate([
         controllers: [nivel_controller_1.NivelController],
         providers: [nivel_service_1.NivelService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: nivel_entity_1.Nivel.name,

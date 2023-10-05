@@ -13,6 +13,7 @@ const aportacion_controller_1 = require("./aportacion.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const aportacion_entity_1 = require("./entities/aportacion.entity");
 const general_module_1 = require("../general/general.module");
+const auth_module_1 = require("../auth/auth.module");
 let AportacionModule = class AportacionModule {
 };
 exports.AportacionModule = AportacionModule;
@@ -21,6 +22,7 @@ exports.AportacionModule = AportacionModule = __decorate([
         controllers: [aportacion_controller_1.AportacionController],
         providers: [aportacion_service_1.AportacionService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: aportacion_entity_1.Aportacion.name,

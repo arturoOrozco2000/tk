@@ -3,8 +3,13 @@ import { AportacionService } from './aportacion.service';
 import { CreateAportacionDto } from './dto/create-aportacion.dto';
 import { UpdateAportacionDto } from './dto/update-aportacion.dto';
 import { SearchAportacion } from './dto/search-aportacion.dto';
+import { Auth } from 'src/auth/decorators';
+import { ValidRoles } from 'src/auth/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Aportaciones')
 @Controller('aportacion')
+@Auth( ValidRoles.admin, ValidRoles.superUser, ValidRoles.user)
 export class AportacionController {
   constructor(private readonly aportacionService: AportacionService) {}
 

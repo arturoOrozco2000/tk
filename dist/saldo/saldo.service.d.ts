@@ -39,6 +39,10 @@ export declare class SaldoService {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     findOne(term: string): Promise<Saldo>;
-    update(id: number, updateSaldoDto: UpdateSaldoDto): string;
+    update(term: string, updateSaldoDto: UpdateSaldoDto): Promise<{
+        idUsuario?: string;
+        monto?: number;
+        status?: boolean;
+    }>;
     remove(id: number): string;
 }

@@ -10,7 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const dist_1 = require("@nestjs/mongoose/dist");
-const usuarios_module_1 = require("./usuarios/usuarios.module");
 const cuenta_module_1 = require("./cuenta/cuenta.module");
 const retiros_module_1 = require("./retiros/retiros.module");
 const aportacion_module_1 = require("./aportacion/aportacion.module");
@@ -19,6 +18,7 @@ const saldo_module_1 = require("./saldo/saldo.module");
 const domicilio_module_1 = require("./domicilio/domicilio.module");
 const env_config_1 = require("./config/env.config");
 const joi_validation_1 = require("./config/joi.validation");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,13 +30,13 @@ exports.AppModule = AppModule = __decorate([
                 validationSchema: joi_validation_1.JoiValidationSchema,
             }),
             dist_1.MongooseModule.forRoot(process.env.MONGODB),
-            usuarios_module_1.UsuariosModule,
             cuenta_module_1.CuentaModule,
             retiros_module_1.RetirosModule,
             aportacion_module_1.AportacionModule,
             nivel_module_1.NivelModule,
             saldo_module_1.SaldoModule,
             domicilio_module_1.DomicilioModule,
+            auth_module_1.AuthModule
         ],
         providers: [],
     })

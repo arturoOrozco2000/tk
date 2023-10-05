@@ -13,6 +13,7 @@ const domicilio_controller_1 = require("./domicilio.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const general_module_1 = require("../general/general.module");
 const domicilio_entity_1 = require("./entities/domicilio.entity");
+const auth_module_1 = require("../auth/auth.module");
 let DomicilioModule = class DomicilioModule {
 };
 exports.DomicilioModule = DomicilioModule;
@@ -21,6 +22,7 @@ exports.DomicilioModule = DomicilioModule = __decorate([
         controllers: [domicilio_controller_1.DomicilioController],
         providers: [domicilio_service_1.DomicilioService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: domicilio_entity_1.Domicilio.name,

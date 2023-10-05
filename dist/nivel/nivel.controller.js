@@ -18,6 +18,9 @@ const nivel_service_1 = require("./nivel.service");
 const create_nivel_dto_1 = require("./dto/create-nivel.dto");
 const update_nivel_dto_1 = require("./dto/update-nivel.dto");
 const search_nivel_dto_1 = require("./dto/search-nivel.dto");
+const decorators_1 = require("../auth/decorators");
+const interfaces_1 = require("../auth/interfaces");
+const swagger_1 = require("@nestjs/swagger");
 let NivelController = class NivelController {
     constructor(nivelService) {
         this.nivelService = nivelService;
@@ -76,7 +79,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], NivelController.prototype, "remove", null);
 exports.NivelController = NivelController = __decorate([
+    (0, swagger_1.ApiTags)('Nivel'),
     (0, common_1.Controller)('nivel'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [nivel_service_1.NivelService])
 ], NivelController);
 //# sourceMappingURL=nivel.controller.js.map

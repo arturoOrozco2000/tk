@@ -18,6 +18,9 @@ const cuenta_service_1 = require("./cuenta.service");
 const create_cuenta_dto_1 = require("./dto/create-cuenta.dto");
 const update_cuenta_dto_1 = require("./dto/update-cuenta.dto");
 const search_cuenta_dto_1 = require("./dto/search-cuenta.dto");
+const interfaces_1 = require("../auth/interfaces");
+const decorators_1 = require("../auth/decorators");
+const swagger_1 = require("@nestjs/swagger");
 let CuentaController = class CuentaController {
     constructor(cuentaService) {
         this.cuentaService = cuentaService;
@@ -76,7 +79,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CuentaController.prototype, "remove", null);
 exports.CuentaController = CuentaController = __decorate([
+    (0, swagger_1.ApiTags)('Cuenta'),
     (0, common_1.Controller)('cuenta'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [cuenta_service_1.CuentaService])
 ], CuentaController);
 //# sourceMappingURL=cuenta.controller.js.map

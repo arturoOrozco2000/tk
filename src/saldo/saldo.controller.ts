@@ -3,13 +3,21 @@ import { SaldoService } from './saldo.service';
 import { CreateSaldoDto } from './dto/create-saldo.dto';
 import { UpdateSaldoDto } from './dto/update-saldo.dto';
 import { SearchSaldo } from './dto/search-saldo.dto';
+import { ValidRoles } from 'src/auth/interfaces';
+import { Auth, GetUsuario } from 'src/auth/decorators';
+import { Usuario } from '../auth/entities/usuario.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Saldo')
 @Controller('saldo')
+@Auth( ValidRoles.admin, ValidRoles.superUser, ValidRoles.user)
 export class SaldoController {
   constructor(private readonly saldoService: SaldoService) {}
 
   @Post()
-  create(@Body() createSaldoDto: CreateSaldoDto) {
+  create(
+    @Body() createSaldoDto: CreateSaldoDto,
+  ) {
     return this.saldoService.create(createSaldoDto);
   }
 
@@ -24,8 +32,12 @@ export class SaldoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSaldoDto: UpdateSaldoDto) {
-    return this.saldoService.update(+id, updateSaldoDto);
+  update(
+    @Param('id') id: string, 
+    @Body() updateSaldoDto: UpdateSaldoDto,
+    @GetUsuario() usuario: Usuario,
+    ) {
+    return this.saldoService.update(id, updateSaldoDto);
   }
 
   @Delete(':id')

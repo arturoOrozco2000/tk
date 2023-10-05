@@ -27,6 +27,7 @@ import { SaldoService } from './saldo.service';
 import { CreateSaldoDto } from './dto/create-saldo.dto';
 import { UpdateSaldoDto } from './dto/update-saldo.dto';
 import { SearchSaldo } from './dto/search-saldo.dto';
+import { Usuario } from '../auth/entities/usuario.entity';
 export declare class SaldoController {
     private readonly saldoService;
     constructor(saldoService: SaldoService);
@@ -37,6 +38,10 @@ export declare class SaldoController {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     findOne(term: string): Promise<import("./entities/saldo.entity").Saldo>;
-    update(id: string, updateSaldoDto: UpdateSaldoDto): string;
+    update(id: string, updateSaldoDto: UpdateSaldoDto, usuario: Usuario): Promise<{
+        idUsuario?: string;
+        monto?: number;
+        status?: boolean;
+    }>;
     remove(id: string): string;
 }

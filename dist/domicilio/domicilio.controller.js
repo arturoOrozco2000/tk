@@ -18,6 +18,9 @@ const domicilio_service_1 = require("./domicilio.service");
 const create_domicilio_dto_1 = require("./dto/create-domicilio.dto");
 const update_domicilio_dto_1 = require("./dto/update-domicilio.dto");
 const search_domicilio_dto_1 = require("./dto/search-domicilio.dto");
+const interfaces_1 = require("../auth/interfaces");
+const decorators_1 = require("../auth/decorators");
+const swagger_1 = require("@nestjs/swagger");
 let DomicilioController = class DomicilioController {
     constructor(domicilioService) {
         this.domicilioService = domicilioService;
@@ -76,7 +79,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DomicilioController.prototype, "remove", null);
 exports.DomicilioController = DomicilioController = __decorate([
+    (0, swagger_1.ApiTags)('Domicilio'),
     (0, common_1.Controller)('domicilio'),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin, interfaces_1.ValidRoles.superUser, interfaces_1.ValidRoles.user),
     __metadata("design:paramtypes", [domicilio_service_1.DomicilioService])
 ], DomicilioController);
 //# sourceMappingURL=domicilio.controller.js.map

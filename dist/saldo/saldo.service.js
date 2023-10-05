@@ -60,8 +60,10 @@ let SaldoService = class SaldoService {
             this.generalService.errorHandler(error);
         }
     }
-    update(id, updateSaldoDto) {
-        return `This action updates a #${id} saldo`;
+    async update(term, updateSaldoDto) {
+        const saldo = await this.findOne(term);
+        await saldo.updateOne(updateSaldoDto);
+        return { ...saldo.toJSON, ...updateSaldoDto };
     }
     remove(id) {
         return `This action removes a #${id} saldo`;

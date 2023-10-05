@@ -13,6 +13,7 @@ const saldo_controller_1 = require("./saldo.controller");
 const general_module_1 = require("../general/general.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const saldo_entity_1 = require("./entities/saldo.entity");
+const auth_module_1 = require("../auth/auth.module");
 let SaldoModule = class SaldoModule {
 };
 exports.SaldoModule = SaldoModule;
@@ -21,13 +22,14 @@ exports.SaldoModule = SaldoModule = __decorate([
         controllers: [saldo_controller_1.SaldoController],
         providers: [saldo_service_1.SaldoService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: saldo_entity_1.Saldo.name,
                     schema: saldo_entity_1.SaldoSchema,
                 },
             ]),
-            general_module_1.GeneralModule
+            general_module_1.GeneralModule,
         ]
     })
 ], SaldoModule);

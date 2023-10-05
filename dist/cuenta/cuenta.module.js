@@ -13,6 +13,7 @@ const cuenta_controller_1 = require("./cuenta.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const cuenta_entity_1 = require("./entities/cuenta.entity");
 const general_module_1 = require("../general/general.module");
+const auth_module_1 = require("../auth/auth.module");
 let CuentaModule = class CuentaModule {
 };
 exports.CuentaModule = CuentaModule;
@@ -21,6 +22,7 @@ exports.CuentaModule = CuentaModule = __decorate([
         controllers: [cuenta_controller_1.CuentaController],
         providers: [cuenta_service_1.CuentaService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: cuenta_entity_1.Cuenta.name,

@@ -13,6 +13,7 @@ const retiros_controller_1 = require("./retiros.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const general_module_1 = require("../general/general.module");
 const retiro_entity_1 = require("./entities/retiro.entity");
+const auth_module_1 = require("../auth/auth.module");
 let RetirosModule = class RetirosModule {
 };
 exports.RetirosModule = RetirosModule;
@@ -21,6 +22,7 @@ exports.RetirosModule = RetirosModule = __decorate([
         controllers: [retiros_controller_1.RetirosController],
         providers: [retiros_service_1.RetirosService],
         imports: [
+            auth_module_1.AuthModule,
             mongoose_1.MongooseModule.forFeature([
                 {
                     name: retiro_entity_1.Retiro.name,
